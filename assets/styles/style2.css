@@ -1,0 +1,90 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7fa;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+h1 {
+    color: #3366cc;
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.balance {
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #2c3e50;
+}
+
+#boosts-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.boost-item {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.boost-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.boost-item strong {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.boost-item button {
+    background-color: #3366cc;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.boost-item button:hover {
+    background-color: #255aa5;
+}
+
+.active-boosts {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.active-boosts h2 {
+    font-size: 22px;
+    color: #3366cc;
+    margin-bottom: 10px;
+}
+
+#active-boosts-list {
+    font-size: 16px;
+    color: #2c3e50;
+}
+
+#active-boosts-list div {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #ecf0f1;
+    display: inline-block;
+}

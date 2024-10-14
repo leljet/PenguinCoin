@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/styles/style2.css">
+    <title>Penguin Coin Boosts Shop</title>
+</head>
+<body>
+
+    <h1>Penguin Coin Boosts Shop</h1>
+    <div class="balance">
+        <strong>Your Balance:</strong> <span id="balance">500</span> Penguin Coins
+    </div>
+
+    <div id="boosts-list">
+        <!-- Список усилений будет добавлен здесь -->
+    </div>
+
+    <div class="active-boosts">
+        <h2>Active Boosts</h2>
+        <div id="active-boosts-list">No active boosts.</div>
+    </div>
+
+    <script>
+        // Список доступных усилений
+        const boosts = [
+            { id: 1, name: 'Double Earnings', price: 100, duration: 3600 }, // 1 час
+            { id: 2, name: 'Faster Transactions', price: 200, duration: 7200 }, // 2 часа
+            { id: 3, name: 'Reduced Fees', price: 300, duration: 10800 } // 3 часа
+        ];
+
+        // Аккаунт пользователя
+        let user = {
+            id: 1,
+            name: "PenguinMaster",
+            balance: 500, // начальный баланс в Penguin Coin
+            activeBoosts: [] // активные усиления
+        };
+
+        // Функция для отображения баланса
+        function updateBalance() {
+            document.getElementById('balance').innerText = user.balance;
+        }
+
+        // Функция для показа доступных усилений
+        function showBoosts() {
+            const boostsList = document.getElementById('boosts-list');
+            boostsList.innerHTML = '';
+            boosts.forEach(boost => {
+                const boostDiv = document.createElement('div');
+                boostDiv.classList.add('boost-item');
+                boostDiv.innerHTML = `
+                    <strong>${boost.name}</strong> - ${boost.price} Penguin Coins (Duration: ${boost.duration / 3600} hours)
+                    <button onclick="purchaseBoost(${boost.id})">Buy</button>
+                `;
+                boostsList.appendChild(boostDiv);
+            });
+        }
+
+        // Функция для покупки усиления
+        function purchaseBoost(boostId) {
+            const boost = boosts.find(b => b.id === boostId);
+
+            if (!boost) {
+                alert("Boost not found.");
+                return;
+            }
+
+            if (user.balance >= boost.price) {
+                user.balance -= boost.price;
+                const expirationTime = Date.now() + boost.duration * 1000;
+                
+                // Добавляем усиление в активные
+                user.activeBoosts.push({ ...boost, expiration: expirationTime });
+                alert(`You purchased ${boost.name}. It will expire in ${boost.duration / 3600} hours.`);
+                
+                // Обновляем баланс и активные усиления
+                updateBalance();
+                checkActiveBoosts();
+            } else {
+                alert("Not enough Penguin Coins.");
+            }
+        }
+
+        // Функция для проверки активных усилений
+        function checkActiveBoosts() {
+            const currentTime = Date.now();
+            user.activeBoosts = user.activeBoosts.filter(boost => boost.expiration > currentTime);
+
+            const activeBoostsList = document.getElementById('active-boosts-list');
+            if (user.activeBoosts.length > 0) {
+                activeBoostsList.innerHTML = '';
+                user.activeBoosts.forEach(boost => {
+                    const remainingTime = (boost.expiration - currentTime) / 1000;
+                    const boostDiv = document.createElement('div');
+                    boostDiv.innerText = `${boost.name} - expires in ${(remainingTime / 3600).toFixed(2)} hours.`;
+                    activeBoostsList.appendChild(boostDiv);
+                });
+            } else {
+                activeBoostsList.innerText = 'No active boosts.';
+            }
+        }
+
+        // Инициализация магазина при загрузке страницы
+        window.onload = function() {
+            showBoosts();
+            updateBalance();
+            checkActiveBoosts();
+        };
+    </script>
+</body>
+</html>

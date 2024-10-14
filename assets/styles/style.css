@@ -1,0 +1,70 @@
+*{
+  user-select: none;
+    margin: 0px;
+    padding: 0px;
+
+    box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background: rgb(15, 0, 67);
+  background: linear-gradient(
+    99deg,
+    rgba(15, 0, 67, 1) 15%,
+    rgba(0, 0, 0, 1) 70%,
+    rgba(18, 0, 85, 1) 100%
+  );
+}
+h1 {
+  font-size: 2em;
+  color: white;
+}
+#crypto-button {
+  width: 100%;
+  max-width: 200px;
+  border-radius: 100%;
+  border: 10px solid rgba(0, 0, 255, 0.497);
+  outline: 5px solid rgb(255, 255, 255);
+    margin: 50px auto;
+
+  &:active{
+    transition: 0.3s;
+    /* transform: skew(5deg, -5deg); */
+    transform: rotatey(50deg);
+
+  }
+}
+#crypto-count {
+  margin-top: 20px;
+  font-size: 1.5em;
+  color: white;
+}
+
+#crypto-button {
+  cursor: pointer;
+}
+
+#crypto-count {
+  font-size: 24px;
+  color: #2c3e50;
+  margin-top: 10px;
+}
+
+a {
+  display: block;
+  margin-top: 20px;
+  color: #3366cc;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
